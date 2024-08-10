@@ -1,7 +1,7 @@
 from langchain.chains.base import Chain
 from langchain_community.llms import Ollama
 
-codegemma = Ollama(model="llama3")
+lan_model = Ollama(model="llama3")
 
 class ContentGenerationChain(Chain):
     @property
@@ -14,7 +14,7 @@ class ContentGenerationChain(Chain):
 
     def _call(self, inputs):
         prompt = inputs["prompt"]
-        response = codegemma.generate(prompts=[prompt])
+        response = lan_model.generate(prompts=[prompt])
         generated_content = response.generations[0][0].text
         return {"generated_content": generated_content}
 
